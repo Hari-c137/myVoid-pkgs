@@ -1,6 +1,6 @@
 # Template file for 'neovide'
 pkgname=neovide
-version=0.14.1
+version=0.15.0
 revision=1
 build_style=cargo
 hostmakedepends="pkg-config python3 cmake curl"
