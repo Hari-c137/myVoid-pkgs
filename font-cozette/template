@@ -1,0 +1,29 @@
+# Template file for 'font-cozette'
+pkgname=font-cozette
+version=1.29.0
+revision=1
+create_wrksrc=yes
+hostmakedepends="font-util bdftopcf"
+depends="font-util"
+short_desc="Bitmap programming font optimized for coziness"
+maintainer="ClearlyOpaque <hariprasadaji465@gmail.com>"
+license="MIT"
+homepage="https://github.com/slavfox/Cozette"
+changelog="https://github.com/slavfox/Cozette/raw/master/CHANGELOG.md"
+distfiles="https://github.com/slavfox/Cozette/releases/download/v.${version}/CozetteFonts-v-${version//./-}.zip"
+checksum=1c7eb7c0117b6ac4955e1a2465bb6f94e08445509f4f595b2651ebdabca0c778
+font_dirs="/usr/share/fonts/misc /usr/share/fonts/TTF"
+
+do_install() {
+	cd CozetteFonts
+
+	bdftopcf -t -o cozette.pcf cozette.bdf
+	bdftopcf -t -o cozette_hidpi.pcf cozette_hidpi.bdf
+	vinstall cozette.pcf 644 usr/share/fonts/misc
+	vinstall cozette.otb 644 usr/share/fonts/misc
+	vinstall cozette_hidpi.pcf 644 usr/share/fonts/misc
+	vinstall cozette_hidpi.otb 644 usr/share/fonts/misc
+	vinstall CozetteVector.ttf 644 usr/share/fonts/TTF
+	vinstall CozetteVectorBold.ttf 644 usr/share/fonts/TTF
+	vlicense LICENSE
+}
