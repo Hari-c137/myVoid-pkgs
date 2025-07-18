@@ -1,17 +1,17 @@
 # Template file for 'LACT'
 pkgname=LACT
-version=0.7.4
+version=0.8.0
 revision=1
 build_style=cargo
 make_check_args="-- --skip app::root_stack::thermals_page::fan_curve_frame::tests::set_get_curve"
-hostmakedepends="pkg-config Vulkan-Tools gtk4-devel llvm19-devel"
-makedepends="gtk4-devel ocl-icd-devel Vulkan-Tools"
+hostmakedepends="pkg-config blueprint-compiler gtk4-devel llvm19-devel"
+makedepends="gtk4-devel"
 short_desc="Linux AMDGPU Control Application"
-maintainer="ClearlyOpaque <hariprasadaji465@gmail.com>"
+maintainer="Daniel Martinez <danielmartinez@cock.li>"
 license="MIT"
 homepage="https://github.com/ilya-zlobintsev/LACT"
 distfiles="https://github.com/ilya-zlobintsev/LACT/archive/refs/tags/v${version}.tar.gz"
-checksum=212ac1eadcbc8d7112b7ee11176c6ab0aee04f53bda9cfb342679c2e1cf6a230
+checksum=fe81bf9bfd25a53bf6964b407ba18d24961b7f11ca7ba7ef27e09b846da17931
 make_check=ci-skip # detects intel GPU in github CI pipeline
 
 if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
@@ -19,13 +19,12 @@ if [ "$XBPS_TARGET_WORDSIZE" = 32 ]; then
 fi
 
 do_install() {
-
 	vsv lact
 
 	vbin target/$RUST_TARGET/release/lact
 
-	vinstall res/lactd.service                					644 usr/lib/systemd/system
-  vinstall res/io.github.ilya_zlobintsev.LACT.desktop 644 usr/share/applications
+	vinstall res/lactd.service                          644 usr/lib/systemd/system
+	vinstall res/io.github.ilya_zlobintsev.LACT.desktop 644 usr/share/applications
 	vinstall res/io.github.ilya_zlobintsev.LACT.png     644 usr/share/pixmaps
 	vinstall res/io.github.ilya_zlobintsev.LACT.svg     644 usr/share/icons/hicolor/scalable/apps
 
