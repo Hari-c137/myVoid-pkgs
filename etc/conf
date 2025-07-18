@@ -1,0 +1,6 @@
+XBPS_ALLOW_RESTRICTED=yes
+XBPS_MIRROR=https://repo-fastly.voidlinux.org/current
+XBPS_CFLAGS="-march=native -O3 -pipe"
+XBPS_CXXFLAGS="${XBPS_CFLAGS}"
+XBPS_LDFLAGS="${XBPS_CFLAGS}"
+XBPS_MAKEJOBS=$(nproc)
